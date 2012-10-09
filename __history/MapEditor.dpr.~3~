@@ -3,8 +3,7 @@ program MapEditor;
 uses
   Forms,
   form in 'form.pas' {MainForm},
-  newfile in 'newfile.pas' {NewMapForm},
-  GenerationAlgorithms in 'GenerationAlgorithms.pas';
+  newfile in 'newfile.pas' {NewMapForm};
 
 {$R *.res}
 

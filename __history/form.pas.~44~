@@ -104,17 +104,8 @@ begin
     'Введите коэффциент холмистости(целое число)', tmpString) then
   begin
     val(tmpString, coef, Error);
-    if(Error = 0) then
-    begin
-      HillGenerator(map, coef);
-      isModified := true;
-    end
-    else
-    begin
-      ShowMessage('Нужно ввести целое число!');
-    end;
+    HillGenerator(map, coef);
   end;
-  Invalidate;
 end;
 
 procedure TMainForm.mmNewClick(Sender: TObject);
@@ -164,7 +155,6 @@ end;
 procedure TMainForm.mmSimpleGeneratorClick(Sender: TObject);
 begin
   SimpleGenerator(map);
-  isModified := true;
 end;
 
 procedure TMainForm.Modify(X, Y:Integer);

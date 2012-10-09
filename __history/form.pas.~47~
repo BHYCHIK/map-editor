@@ -164,7 +164,6 @@ end;
 procedure TMainForm.mmSimpleGeneratorClick(Sender: TObject);
 begin
   SimpleGenerator(map);
-  isModified := true;
 end;
 
 procedure TMainForm.Modify(X, Y:Integer);

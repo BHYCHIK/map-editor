@@ -26,6 +26,8 @@ object MainForm: TMainForm
     Align = alLeft
     Caption = #1059#1087#1088#1072#1074#1083#1077#1085#1080#1077
     TabOrder = 0
+    ExplicitLeft = -4
+    ExplicitTop = 8
     object lblPower: TLabel
       Left = 32
       Top = 69
@@ -127,6 +129,7 @@ object MainForm: TMainForm
     Height = 554
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 581
     object pbMap: TPaintBox
       Left = 0
       Top = 0
@@ -160,17 +163,6 @@ object MainForm: TMainForm
       object mmExit: TMenuItem
         Caption = #1042'&'#1099#1093#1086#1076
         OnClick = mmExitClick
-      end
-    end
-    object mmGenerate: TMenuItem
-      Caption = #1040#1074#1090#1086#1075#1077#1085#1077#1088#1072#1094#1080#1103
-      object mmSimpleGenerator: TMenuItem
-        Caption = #1055#1088#1086#1089#1090#1086#1081' '#1072#1083#1075#1086#1088#1080#1090#1084
-        OnClick = mmSimpleGeneratorClick
-      end
-      object mmHillGenerator: TMenuItem
-        Caption = #1061#1086#1083#1084#1086#1074#1086#1081' '#1072#1083#1075#1086#1088#1080#1090#1084
-        OnClick = mmHillGeneratorClick
       end
     end
   end

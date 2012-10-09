@@ -170,7 +170,6 @@ object MainForm: TMainForm
       end
       object mmHillGenerator: TMenuItem
         Caption = #1061#1086#1083#1084#1086#1074#1086#1081' '#1072#1083#1075#1086#1088#1080#1090#1084
-        OnClick = mmHillGeneratorClick
       end
     end
   end
