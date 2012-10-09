@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Spin, Menus, ExtCtrls, newfile;
+  Dialogs, StdCtrls, Spin, Menus, ExtCtrls;
 
 type
   TMainForm = class(TForm)
@@ -31,7 +31,6 @@ type
     procedure mmOpenClick(Sender: TObject);
     procedure pbMapPaint(Sender: TObject);
     procedure mmSaveClick(Sender: TObject);
-    procedure mmNewClick(Sender: TObject);
   private
     isModified: Boolean;
     map: TBitmap;
@@ -72,22 +71,6 @@ end;
 procedure TMainForm.mmExitClick(Sender: TObject);
 begin
   ExitProcedure;
-end;
-
-procedure TMainForm.mmNewClick(Sender: TObject);
-begin
-  if newfile.NewMapForm.ShowModal = mrOk then
-  begin
-    pbmap.Left := 0;
-    pbmap.Top := 0;
-    map.Width := newfile.NewMapForm.seWidth.Value;
-    map.Height := newfile.NewMapForm.seLength.Value;
-    pbMap.Width := map.Width;
-    pbMap.Height := map.Height;
-    map.Canvas.Brush.Color := RGB(255, 255, 255);
-    map.Canvas.Brush.Style := bsSolid;
-    map.Canvas.Rectangle(-1, -1, map.Height + 2, map.Width + 2);
-  end;
 end;
 
 procedure TMainForm.mmOpenClick(Sender: TObject);

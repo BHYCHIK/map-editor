@@ -101,7 +101,6 @@ object MainForm: TMainForm
       Caption = '&'#1060#1072#1081#1083
       object mmNew: TMenuItem
         Caption = #1057#1086'&'#1079#1076#1072#1090#1100
-        OnClick = mmNewClick
       end
       object mmSave: TMenuItem
         Caption = '&'#1057#1086#1093#1088#1072#1085#1080#1090#1100

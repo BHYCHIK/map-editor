@@ -78,15 +78,8 @@ procedure TMainForm.mmNewClick(Sender: TObject);
 begin
   if newfile.NewMapForm.ShowModal = mrOk then
   begin
-    pbmap.Left := 0;
-    pbmap.Top := 0;
-    map.Width := newfile.NewMapForm.seWidth.Value;
-    map.Height := newfile.NewMapForm.seLength.Value;
-    pbMap.Width := map.Width;
-    pbMap.Height := map.Height;
-    map.Canvas.Brush.Color := RGB(255, 255, 255);
-    map.Canvas.Brush.Style := bsSolid;
-    map.Canvas.Rectangle(-1, -1, map.Height + 2, map.Width + 2);
+    map.Width := newfile.NewMapForm.seWidth;
+    map.Height := newfile.NewMapForm.seLength;
   end;
 end;
 
