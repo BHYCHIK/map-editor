@@ -3,9 +3,8 @@ object MainForm: TMainForm
   Top = 0
   Caption = 'LandscapeEditor'
   ClientHeight = 554
-  ClientWidth = 721
+  ClientWidth = 726
   Color = clBtnFace
-  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -26,8 +25,6 @@ object MainForm: TMainForm
     Align = alLeft
     Caption = #1059#1087#1088#1072#1074#1083#1077#1085#1080#1077
     TabOrder = 0
-    ExplicitLeft = -4
-    ExplicitTop = 8
     object lblPower: TLabel
       Left = 32
       Top = 69
@@ -43,11 +40,11 @@ object MainForm: TMainForm
       Caption = #1043#1088#1072#1076#1080#1077#1085#1090' '#1082#1080#1089#1090#1080
     end
     object lblX: TLabel
-      Left = 91
-      Top = 189
-      Width = 6
+      Left = 27
+      Top = 192
+      Width = 16
       Height = 13
-      Caption = '0'
+      Caption = 'lblX'
     end
     object lblRadius: TLabel
       Left = 32
@@ -57,39 +54,18 @@ object MainForm: TMainForm
       Caption = #1056#1072#1076#1080#1091#1089' '#1082#1080#1089#1090#1080
     end
     object lblY: TLabel
-      Left = 91
+      Left = 27
       Top = 208
-      Width = 6
+      Width = 31
       Height = 13
-      Caption = '0'
+      Caption = 'Label1'
     end
     object lblZ: TLabel
-      Left = 91
+      Left = 27
       Top = 227
-      Width = 6
+      Width = 31
       Height = 13
-      Caption = '0'
-    end
-    object lblXMark: TLabel
-      Left = 75
-      Top = 189
-      Width = 10
-      Height = 13
-      Caption = 'X:'
-    end
-    object lblYMark: TLabel
-      Left = 75
-      Top = 208
-      Width = 10
-      Height = 13
-      Caption = 'Y:'
-    end
-    object lblZMark: TLabel
-      Left = 75
-      Top = 227
-      Width = 10
-      Height = 13
-      Caption = 'Z:'
+      Caption = 'Label1'
     end
     object seRadius: TSpinEdit
       Left = 18
@@ -125,11 +101,10 @@ object MainForm: TMainForm
   object ScrollBox1: TScrollBox
     Left = 145
     Top = 0
-    Width = 576
+    Width = 581
     Height = 554
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 581
     object pbMap: TPaintBox
       Left = 0
       Top = 0

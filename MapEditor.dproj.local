@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2012.10.09 12:15:21.956,=C:\botva\mashgraph\Unit1.pas</Transaction>
-    <Transaction>2012.10.09 12:29:40.262,C:\botva\mashgraph\newfile.dfm=C:\botva\mashgraph\Unit1.dfm</Transaction>
-    <Transaction>2012.10.09 12:29:40.262,C:\botva\mashgraph\newfile.pas=C:\botva\mashgraph\Unit1.pas</Transaction>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.956,=C:\botva\mashgraph\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,C:\botva\mashgraph\newfile.pas=C:\botva\mashgraph\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,C:\botva\mashgraph\newfile.dfm=C:\botva\mashgraph\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

@@ -28,9 +28,6 @@ type
     lblRadius: TLabel;
     lblY: TLabel;
     lblZ: TLabel;
-    lblXMark: TLabel;
-    lblYMark: TLabel;
-    lblZMark: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mmExitClick(Sender: TObject);
@@ -91,10 +88,6 @@ end;
 
 procedure TMainForm.mmNewClick(Sender: TObject);
 begin
-  if isModified then
-  begin
-    mmSave.Click;
-  end;
   if newfile.NewMapForm.ShowModal = mrOk then
   begin
     pbmap.Left := 0;
@@ -141,8 +134,6 @@ var
   Hight: Integer;
   Power: Integer;
 begin
-  isModified := true;
-  map.Canvas.Pen.Width := 2;
   map.Canvas.Brush.Style := bsClear;
   map.Canvas.Pen.Style := psSolid;
   MaxR := seRadius.Value;
@@ -151,13 +142,17 @@ begin
   Hight := GetRValue(map.Canvas.Pixels[X, Y]) + Power;
   for Radius := 0 to MaxR do
   begin
-    if (Hight < 0) or (Hight > 255)then
+    if Hight < 0 then
     begin
-      break
+      Hight := 0;
+    end;
+    if Hight > 255 then
+    begin
+      Hight := 255;
     end;
     map.Canvas.Pen.Color := rgb(Hight, Hight, Hight);
     map.Canvas.Ellipse(x - Radius, y - Radius, x + Radius, y + Radius);
-    Dec(Hight, Gradient*Sign(Power));
+    Inc(Hight, Gradient*Sign(Power));
   end;
   pbMap.Invalidate;
 end;
@@ -175,12 +170,10 @@ begin
   lblX.Caption := IntToStr(x);
   lblY.Caption := IntToStr(y);
   lblZ.Caption := IntToStr(GetRValue(map.Canvas.Pixels[X, Y]));
-
-  pbMap.Canvas.Draw(0,0, map);
-  pbMap.Canvas.Pen.Color := clRed;
-  pbMap.Canvas.Brush.Style := bsClear;
-  pbMap.Canvas.Ellipse(x - seRadius.Value, y - seRadius.Value,
-    x + seRadius.Value, y + seRadius.Value);
+  if isPainiting then
+  begin
+    Modify(x, y);
+  end;
 end;
 
 procedure TMainForm.pbMapMouseUp(Sender: TObject; Button: TMouseButton;
