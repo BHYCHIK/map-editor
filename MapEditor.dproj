@@ -50,7 +50,10 @@
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="form.pas">
-				<Form>Form1</Form>
+				<Form>MainForm</Form>
+			</DCCReference>
+			<DCCReference Include="newfile.pas">
+				<Form>NewMapForm</Form>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

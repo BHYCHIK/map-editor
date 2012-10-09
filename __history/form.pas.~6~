@@ -13,7 +13,7 @@ type
     lblRadius: TLabel;
     sePower: TSpinEdit;
     lblPower: TLabel;
-    mmMenu: TMainMenu;
+    MainMenu1: TMainMenu;
     mmFile: TMenuItem;
     mmSave: TMenuItem;
     mmOpen: TMenuItem;
@@ -22,9 +22,6 @@ type
     ScrollBox1: TScrollBox;
     lblGradient: TLabel;
     seGradient: TSpinEdit;
-    mmNew: TMenuItem;
-    odOpenMap: TOpenDialog;
-    sdSaveRawFile: TSaveDialog;
   private
     { Private declarations }
   public

@@ -45,8 +45,8 @@ object MainForm: TMainForm
       Caption = #1043#1088#1072#1076#1080#1077#1085#1090' '#1082#1080#1089#1090#1080
     end
     object seRadius: TSpinEdit
-      Left = 18
-      Top = 41
+      Left = 11
+      Top = 40
       Width = 121
       Height = 22
       MaxValue = 100
@@ -55,8 +55,8 @@ object MainForm: TMainForm
       Value = 10
     end
     object sePower: TSpinEdit
-      Left = 18
-      Top = 89
+      Left = 11
+      Top = 88
       Width = 121
       Height = 22
       MaxValue = 255
@@ -65,7 +65,7 @@ object MainForm: TMainForm
       Value = 0
     end
     object seGradient: TSpinEdit
-      Left = 18
+      Left = 11
       Top = 136
       Width = 121
       Height = 22

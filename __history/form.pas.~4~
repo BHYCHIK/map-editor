@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Spin, Menus, ExtCtrls;
+  Dialogs, StdCtrls, Spin, Menus;
 
 type
   TMainForm = class(TForm)
@@ -13,18 +13,11 @@ type
     lblRadius: TLabel;
     sePower: TSpinEdit;
     lblPower: TLabel;
-    mmMenu: TMainMenu;
+    MainMenu1: TMainMenu;
     mmFile: TMenuItem;
     mmSave: TMenuItem;
     mmOpen: TMenuItem;
     mmExit: TMenuItem;
-    pbMap: TPaintBox;
-    ScrollBox1: TScrollBox;
-    lblGradient: TLabel;
-    seGradient: TSpinEdit;
-    mmNew: TMenuItem;
-    odOpenMap: TOpenDialog;
-    sdSaveRawFile: TSaveDialog;
   private
     { Private declarations }
   public
