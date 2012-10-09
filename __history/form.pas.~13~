@@ -82,7 +82,6 @@ begin
     pbmap.Height := map.Height;
     pbMap.Left := 0;
     pbMap.Top := 0;
-    isModified := false;
   end;
 
 end;
@@ -92,7 +91,6 @@ begin
   if sdSaveRawFile.Execute then
   begin
     map.SaveToFile(sdSaveRawFile.FileName);
-    isModified := false;
   end;
 end;
 

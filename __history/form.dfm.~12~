@@ -87,11 +87,13 @@ object MainForm: TMainForm
     object pbMap: TPaintBox
       Left = 0
       Top = 0
-      Width = 0
-      Height = 0
-      Color = clBlack
-      ParentColor = False
-      OnPaint = pbMapPaint
+      Width = 577
+      Height = 550
+      Align = alClient
+      ExplicitLeft = 528
+      ExplicitTop = 264
+      ExplicitWidth = 105
+      ExplicitHeight = 105
     end
   end
   object mmMenu: TMainMenu
@@ -104,15 +106,12 @@ object MainForm: TMainForm
       end
       object mmSave: TMenuItem
         Caption = '&'#1057#1086#1093#1088#1072#1085#1080#1090#1100
-        OnClick = mmSaveClick
       end
       object mmOpen: TMenuItem
         Caption = '&'#1054#1090#1082#1088#1099#1090#1100
-        OnClick = mmOpenClick
       end
       object mmExit: TMenuItem
         Caption = #1042'&'#1099#1093#1086#1076
-        OnClick = mmExitClick
       end
     end
   end

@@ -30,7 +30,6 @@ type
     procedure mmExitClick(Sender: TObject);
     procedure mmOpenClick(Sender: TObject);
     procedure pbMapPaint(Sender: TObject);
-    procedure mmSaveClick(Sender: TObject);
   private
     isModified: Boolean;
     map: TBitmap;
@@ -82,18 +81,8 @@ begin
     pbmap.Height := map.Height;
     pbMap.Left := 0;
     pbMap.Top := 0;
-    isModified := false;
   end;
 
-end;
-
-procedure TMainForm.mmSaveClick(Sender: TObject);
-begin
-  if sdSaveRawFile.Execute then
-  begin
-    map.SaveToFile(sdSaveRawFile.FileName);
-    isModified := false;
-  end;
 end;
 
 procedure TMainForm.pbMapPaint(Sender: TObject);
