@@ -26,7 +26,6 @@ type
     odOpenMap: TOpenDialog;
     sdSaveRawFile: TSaveDialog;
     procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     isModified: Boolean;
     procedure ExitProcedure();
@@ -48,11 +47,6 @@ begin
     mmSave.Click;
   end;
   Application.Terminate;
-end;
-
-procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  ExitProcedure;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);

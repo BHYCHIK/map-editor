@@ -25,11 +25,9 @@ type
     mmNew: TMenuItem;
     odOpenMap: TOpenDialog;
     sdSaveRawFile: TSaveDialog;
-    procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure mmExitClick(Sender: TObject);
   private
     isModified: Boolean;
-    procedure ExitProcedure();
   public
     { Public declarations }
   end;
@@ -41,23 +39,13 @@ implementation
 
 {$R *.dfm}
 
-procedure TMainForm.ExitProcedure;
+procedure TMainForm.mmExitClick(Sender: TObject);
 begin
   if isModified then
   begin
     mmSave.Click;
   end;
   Application.Terminate;
-end;
-
-procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  ExitProcedure;
-end;
-
-procedure TMainForm.FormCreate(Sender: TObject);
-begin
-  isModified := false;
 end;
 
 end.
