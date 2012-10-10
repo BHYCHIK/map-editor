@@ -177,7 +177,7 @@ begin
     for Y := 0 to High(map[x]) do
     begin
       if Max < 255 then      
-        map[x, y] := sqrt((map[x, y] - min)/(max - min))*Max
+        map[x, y] := sqrt(sqrt((map[x, y] - min)/(max - min)))*Max
       else
         map[x, y] := sqrt((map[x, y] - min)/(max - min))*255;
     end;
@@ -253,9 +253,6 @@ var
   X, Y, Z: Integer;
   tmpMap: HeightMap;
 begin
-  if (map.Width = 0) and (map.Height = 0) then
-    exit;
-
   tmpMap := HillUpping(map, iters);
   HillNormalizationAndLiniaization(tmpMap);
   HillCopy(map, tmpMap);

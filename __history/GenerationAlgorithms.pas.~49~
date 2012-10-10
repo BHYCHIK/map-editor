@@ -172,6 +172,9 @@ begin
     end;
   end;
 
+  if min = High(integer) then
+    exit;
+
   for X := 0 to High(map) do
   begin
     for Y := 0 to High(map[x]) do
@@ -253,9 +256,6 @@ var
   X, Y, Z: Integer;
   tmpMap: HeightMap;
 begin
-  if (map.Width = 0) and (map.Height = 0) then
-    exit;
-
   tmpMap := HillUpping(map, iters);
   HillNormalizationAndLiniaization(tmpMap);
   HillCopy(map, tmpMap);
