@@ -151,7 +151,7 @@ end;
 
 procedure HillNormalizationAndLiniaization(var map: HeightMap);
 const
-  criticalLevel = 14;
+  criticalLevel = 25;
 var
   Max, Min, Z: Extended;
   X, Y: Integer;
@@ -179,9 +179,9 @@ begin
     for Y := 0 to High(map[x]) do
     begin
       if Max < 255 then      
-        map[x, y] := sqr(sqr((map[x, y] - min)/(max - min)))*Max
+        map[x, y] := sqrt(sqrt(sqrt((map[x, y] - min)/(max - min))))*Max
       else
-        map[x, y] := sqr(((map[x, y] - min)/(max - min)))*255;
+        map[x, y] := sqrt(sqrt(sqrt((map[x, y] - min)/(max - min))))*255;
     end;
   end;
 
