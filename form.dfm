@@ -172,6 +172,14 @@ object MainForm: TMainForm
         Caption = #1061#1086#1083#1084#1086#1074#1086#1081' '#1072#1083#1075#1086#1088#1080#1090#1084
         OnClick = mmHillGeneratorClick
       end
+      object MidPointDisplacement1: TMenuItem
+        Caption = #1056#1072#1079#1084#1077#1097#1077#1085#1080#1077' '#1089#1088#1077#1076#1085#1077#1081' '#1090#1086#1095#1082#1080
+        OnClick = MidPointDisplacement1Click
+      end
+      object DiamondSquare1: TMenuItem
+        Caption = #1056#1086#1084#1073'-'#1082#1074#1072#1076#1088#1072#1090
+        OnClick = DiamondSquare1Click
+      end
     end
   end
   object odOpenMap: TOpenDialog

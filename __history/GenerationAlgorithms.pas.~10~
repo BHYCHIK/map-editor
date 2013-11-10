@@ -7,7 +7,7 @@ uses
 procedure SimpleGenerator(var map: TBitmap; const Coef: Integer);
 procedure HillGenerator(var map: TBitmap; const iters: Integer);
 procedure MidPointDisplacment(var map: TBitmap; const R: Extended);
-procedure DiamondSquareGenerator(var map: TBitmap; R: Extended);
+procedure DiamondSquareGenerator(var map: TBitmap; const R: Extended);
 
 
 implementation
@@ -326,7 +326,7 @@ end;
 
 procedure setSample(var map: TBitmap; const x, y: Integer; const value: Integer);
 begin
-    map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))] := rgb(value, value, value);
+    map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))] := value;
 end;
 
 procedure sampleSquare(var map: TBitmap; x, y, size, value: Integer);
@@ -390,23 +390,13 @@ begin
   end;
 end;
 
-procedure DiamondSquareGenerator(var map: TBitmap; R: Extended);
+procedure DiamondSquareGenerator(var map: TBitmap; const R: Extended);
 var
   Col: Integer;
-  SampleSize, YStep: Integer;
+  XStep, YStep: Integer;
 begin
   Randomize;
   map.Canvas.Brush.Color := clBlack;
-  map.Canvas.Brush.Style := bsSolid;
   map.Canvas.Rectangle(-2, -2, map.Width + 2, map.Height + 2);
 
-  sampleSize := map.Width;
-  while SampleSize >= 1 do
-  begin
-    DiamondSquare(map, SampleSize, R);
-    R := R / 2;
-    SampleSize := SampleSize div 2;
-  end;
-
-end;
 end.

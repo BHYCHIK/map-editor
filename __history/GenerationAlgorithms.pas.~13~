@@ -329,51 +329,55 @@ begin
     map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))] := rgb(value, value, value);
 end;
 
-procedure sampleSquare(var map: TBitmap; x, y, size, value: Integer);
+procedure sampleSquare(var map: TBitmap; x, y, sizeX, SizeY, value: Integer);
 var
-  hs: Integer;
+  hsX, hsY: Integer;
   a, b, c, d: Integer;
 begin
-  hs := size div 2;
-  a := sample(map, x - hs, y - hs);
-  b := sample(map, x + hs, y - hs);
-  c := sample(map, x - hs, y + hs);
-  d := sample(map, x + hs, Y + hs);
+  hsX := sizeX div 2;
+  hsY := sizeY div 2;
+  a := sample(map, x - hsX, y - hsY);
+  b := sample(map, x + hsX, y - hsY);
+  c := sample(map, x - hsX, y + hsY);
+  d := sample(map, x + hsX, Y + hsY);
 
   SetSample(map, x, y, (a + b + c + d) div 4 + value);
 end;
 
-procedure sampleDiamond(var map: TBitmap; x, y, size, value: Integer);
+procedure sampleDiamond(var map: TBitmap; x, y, sizeX, SizeY, value: Integer);
 var
-  hs: Integer;
+  hsX, hsY: Integer;
   a, b, c, d: Integer;
 begin
-  hs := size div 2;
-  a := sample(map, x - hs, y);
-  b := sample(map, x + hs, y);
-  c := sample(map, x, y - hs);
-  d := sample(map, x, Y + hs);
+  hsX := sizeX div 2;
+  hsY := sizeY div 2;
+  a := sample(map, x - hsX, y);
+  b := sample(map, x + hsX, y);
+  c := sample(map, x, y - hsY);
+  d := sample(map, x, Y + hsY);
 
   SetSample(map, x, y, (a + b + c + d) div 4 + value);
 end;
 
-procedure DiamondSquare(var map: TBitmap; stepsize: integer; scale: double);
+procedure DiamondSquare(var map: TBitmap; stepsizeX: integer; stepsizeY: integer; scale: double);
 var
-  halfstep: integer;
+  halfstepX: integer;
+  halfstepY: Integer;
   x, y: integer;
 begin
-  halfstep := stepsize div 2;
+  halfstepX := stepsizeX div 2;
+  halfstepY := stepsizeY div 2;
 
-  y := halfstep;
-  while y < map.Height + halfstep do
+  y := halfstepY;
+  while y < map.Height + halfstepY do
   begin
-    x := halfstep;
-    while x < map.Width + halfstep do
+    x := halfstepX;
+    while x < map.Width + halfstepY do
     begin
-      sampleSquare(map, x, y, stepsize, Round((random(60) - 30) * scale));
-      x := x + stepsize;
+      sampleSquare(map, x, y, stepsizeX, stepSizeY, Round((random(60) - 30) * scale));
+      x := x + stepsizeX;
     end;
-    y := y + stepsize;
+    y := y + stepsizeY;
   end;
 
   y := 0;
@@ -382,30 +386,32 @@ begin
     x := 0;
     while x < map.Width do
     begin
-      sampleDiamond(map, x + halfstep, y, stepsize, Round((random(60) - 30) * scale));
-      sampleDiamond(map, x, y + halfstep, stepsize, Round((random(60) - 30) * scale));
-      x := x + stepsize;
+      sampleDiamond(map, x + halfstepX, y, stepsizeX, stepsizeY, Round((random(60) - 30) * scale));
+      sampleDiamond(map, x, y + halfstepY, stepsizeX, stepsizeY, Round((random(60) - 30) * scale));
+      x := x + stepsizeX;
     end;
-    y := y + stepsize;
+    y := y + stepsizeY;
   end;
 end;
 
 procedure DiamondSquareGenerator(var map: TBitmap; R: Extended);
 var
   Col: Integer;
-  SampleSize, YStep: Integer;
+  SampleSizeX, SampleSizeY: Integer;
 begin
   Randomize;
   map.Canvas.Brush.Color := clBlack;
   map.Canvas.Brush.Style := bsSolid;
   map.Canvas.Rectangle(-2, -2, map.Width + 2, map.Height + 2);
 
-  sampleSize := map.Width;
-  while SampleSize >= 1 do
+  sampleSizeX := map.Width;
+  sampleSizeY := map.Height;
+  while (SampleSizeX >= 1) or (SampleSizeY >= 1) do
   begin
-    DiamondSquare(map, SampleSize, R);
+    DiamondSquare(map, SampleSizeX, SampleSizeY, R);
     R := R / 2;
-    SampleSize := SampleSize div 2;
+    SampleSizeX := SampleSizeX div 2;
+    SampleSizeY := SampleSizeY div 2;
   end;
 
 end;

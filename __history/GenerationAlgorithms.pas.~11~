@@ -326,7 +326,7 @@ end;
 
 procedure setSample(var map: TBitmap; const x, y: Integer; const value: Integer);
 begin
-    map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))] := rgb(value, value, value);
+    map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))] := value;
 end;
 
 procedure sampleSquare(var map: TBitmap; x, y, size, value: Integer);

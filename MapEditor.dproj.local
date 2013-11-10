@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.598,C:\botva\mashgraph\Unit1.pas=C:\botva\mashgraph\GenerationAlgorithms.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.262,C:\botva\mashgraph\Unit1.dfm=C:\botva\mashgraph\newfile.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.262,C:\botva\mashgraph\Unit1.pas=C:\botva\mashgraph\newfile.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.482,=C:\botva\mashgraph\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.956,=C:\botva\mashgraph\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,C:\botva\mashgraph\newfile.dfm=C:\botva\mashgraph\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,C:\botva\mashgraph\newfile.pas=C:\botva\mashgraph\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.598,C:\botva\mashgraph\GenerationAlgorithms.pas=C:\botva\mashgraph\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

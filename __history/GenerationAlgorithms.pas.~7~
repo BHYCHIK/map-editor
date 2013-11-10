@@ -7,7 +7,7 @@ uses
 procedure SimpleGenerator(var map: TBitmap; const Coef: Integer);
 procedure HillGenerator(var map: TBitmap; const iters: Integer);
 procedure MidPointDisplacment(var map: TBitmap; const R: Extended);
-procedure DiamondSquareGenerator(var map: TBitmap; R: Extended);
+procedure DiamondSquareGenerator(var map: TBitmap; const R: Extended);
 
 
 implementation
@@ -319,94 +319,146 @@ begin
   MidPointRec(map, Zero, Zero, map.Width - 1, map.Height - 1, R);
 end;
 
-function Sample(const map: TBitmap; const x, y: Integer): Integer;
-begin
-  result := GetRValue(map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))]);
-end;
-
-procedure setSample(var map: TBitmap; const x, y: Integer; const value: Integer);
-begin
-    map.Canvas.Pixels[(x AND (map.Width - 1)), (y AND (map.height - 1))] := rgb(value, value, value);
-end;
-
-procedure sampleSquare(var map: TBitmap; x, y, size, value: Integer);
+procedure Square(var map: TBitmap; const R: Extended; const stepX, stepY: Integer);
 var
-  hs: Integer;
-  a, b, c, d: Integer;
+  I, J: Integer;
+  RLim, DLim: Integer;
+  col: Integer;
+  dividor: Integer;
 begin
-  hs := size div 2;
-  a := sample(map, x - hs, y - hs);
-  b := sample(map, x + hs, y - hs);
-  c := sample(map, x - hs, y + hs);
-  d := sample(map, x + hs, Y + hs);
-
-  SetSample(map, x, y, (a + b + c + d) div 4 + value);
-end;
-
-procedure sampleDiamond(var map: TBitmap; x, y, size, value: Integer);
-var
-  hs: Integer;
-  a, b, c, d: Integer;
-begin
-  hs := size div 2;
-  a := sample(map, x - hs, y);
-  b := sample(map, x + hs, y);
-  c := sample(map, x, y - hs);
-  d := sample(map, x, Y + hs);
-
-  SetSample(map, x, y, (a + b + c + d) div 4 + value);
-end;
-
-procedure DiamondSquare(var map: TBitmap; stepsize: integer; scale: double);
-var
-  halfstep: integer;
-  x, y: integer;
-begin
-  halfstep := stepsize div 2;
-
-  y := halfstep;
-  while y < map.Height + halfstep do
+  I := 0;
+  while I < map.Width - 1 do
   begin
-    x := halfstep;
-    while x < map.Width + halfstep do
+    J := 0;
+    while J < map.Height - 1 do
     begin
-      sampleSquare(map, x, y, stepsize, Round((random(60) - 30) * scale));
-      x := x + stepsize;
-    end;
-    y := y + stepsize;
-  end;
 
-  y := 0;
-  while y < map.Height do
-  begin
-    x := 0;
-    while x < map.Width do
-    begin
-      sampleDiamond(map, x + halfstep, y, stepsize, Round((random(60) - 30) * scale));
-      sampleDiamond(map, x, y + halfstep, stepsize, Round((random(60) - 30) * scale));
-      x := x + stepsize;
+      RLim := I + stepX;
+      if RLim >= map.Width then
+      begin
+        RLim := map.Width - 1;
+      end;
+      DLim := J + stepY;
+      if DLim >= map.Height then
+      begin
+        DLim := map.Height - 1;
+      end;
+
+      dividor := 0;
+      col := getRValue(map.Canvas.Pixels[i, j]);
+      if (i >= 0) and (j >= 0) and (i < map.Width - 1) and (j < map.Height) then
+        Inc(dividor);
+      col := col + getRValue(map.Canvas.Pixels[i, DLim]);
+      if (i >= 0) and (DLim >= 0) and (i < map.Width - 1) and (DLim < map.Height) then
+        Inc(dividor);
+      col := col + getRValue(map.Canvas.Pixels[RLim, J]);
+      if (RLim >= 0) and (j >= 0) and (RLim < map.Width - 1) and (j < map.Height) then
+        Inc(dividor);
+      col := col + getRValue(map.Canvas.Pixels[RLim, DLim]);
+      if (RLim >= 0) and (DLim >= 0) and (RLim < map.Width - 1) and (DLim < map.Height) then
+        Inc(dividor);
+      col := col div dividor;
+      col := col + Random(Round(2*R*sqrt(Round(sqr(StepX div 2) + sqr(StepY div 2)))))
+              - Round(R*sqrt(Round(sqr(StepX div 2) + sqr(StepY div 2))));
+      if col < 0 then
+      begin
+        col := 0;
+      end;
+      if col > 255 then
+      begin
+        col := 255;
+      end;
+
+      map.Canvas.Pixels[i + (RLim - I) div 2, j + (DLim - J) div 2] := rgb(col, col, col);
+
+      J := J + stepY;
     end;
-    y := y + stepsize;
+    I := I + stepX;
   end;
 end;
 
-procedure DiamondSquareGenerator(var map: TBitmap; R: Extended);
+procedure Diamond(var map: TBitmap; const R: Extended; const stepX, stepY: Integer);
+var
+  I, J: Integer;
+  Top, Left, Bottom, Right: Integer;
+  col: Integer;
+  ICont, JCont: Boolean;
+begin
+  I := 0;
+  ICont := True;
+  while True do
+  begin
+    J := 0;
+    JCont := True;
+    while JCont do
+    begin
+      Right := (I + StepX div 2);
+      Left := (I - StepX div 2 - 1);
+      Top := J;
+      Bottom := J + (StepY div 2);
+
+      col := getRValue(map.Canvas.Pixels[i, Top]);
+      col := col + getRValue(map.Canvas.Pixels[Right, Bottom]);
+      col := col + getRValue(map.Canvas.Pixels[Left, Bottom]);
+      col := col + getRValue(map.Canvas.Pixels[I, J + StepY]);
+      col := col div 4;
+      if col < 0 then
+      begin
+        col := 0;
+      end;
+      if col > 255 then
+      begin
+        col := 255;
+      end;
+
+      map.Canvas.Pixels[I, Bottom] := rgb(col, col, col);
+
+      J := J + stepY;
+      if not ICont then
+      begin
+        break;
+      end;
+      if J >= map.Height - 1 then
+      begin
+       JCont := false;
+       J := map.Height - 1;
+     end;
+    end;
+    I := I + stepX;
+    if not ICont then
+      break;
+    if I >= map.Width - 1 then
+    begin
+      ICont := false;
+      I := map.Width - 1;
+    end;
+  end;
+end;
+
+procedure DiamondSquareGenerator(var map: TBitmap; const R: Extended);
 var
   Col: Integer;
-  SampleSize, YStep: Integer;
+  XStep, YStep: Integer;
 begin
   Randomize;
   map.Canvas.Brush.Color := clBlack;
-  map.Canvas.Brush.Style := bsSolid;
   map.Canvas.Rectangle(-2, -2, map.Width + 2, map.Height + 2);
-
-  sampleSize := map.Width;
-  while SampleSize >= 1 do
-  begin
-    DiamondSquare(map, SampleSize, R);
-    R := R / 2;
-    SampleSize := SampleSize div 2;
-  end;
-
+  Col := Random(256);
+  map.Canvas.Pixels[0, 0] := rgb(Col, Col, Col);
+  Col := Random(256);
+  map.Canvas.Pixels[map.Width - 1, 0] := rgb(Col, Col, Col);
+  Col := Random(256);
+  map.Canvas.Pixels[0, map.Height - 1] := rgb(Col, Col, Col);
+  Col := Random(256);
+  map.Canvas.Pixels[map.Width - 1, map.Height - 1] := rgb(Col, Col, Col);
+  XStep := map.Width - 1;
+  YSTep := map.Height - 1;
+  repeat
+    Square(map, R, XStep, YStep);
+    Diamond(map, R, XStep, YStep);
+    XStep := XStep div 2;
+    YStep := YStep div 2;
+  until (XStep <= 1) and (YStep <= 1);
 end;
+
 end.

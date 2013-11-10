@@ -34,6 +34,8 @@ type
     mmGenerate: TMenuItem;
     mmSimpleGenerator: TMenuItem;
     mmHillGenerator: TMenuItem;
+    MidPointDisplacement1: TMenuItem;
+    DiamondSquare1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mmExitClick(Sender: TObject);
@@ -49,6 +51,8 @@ type
       Y: Integer);
     procedure mmSimpleGeneratorClick(Sender: TObject);
     procedure mmHillGeneratorClick(Sender: TObject);
+    procedure MidPointDisplacement1Click(Sender: TObject);
+    procedure DiamondSquare1Click(Sender: TObject);
   private
     isPainiting: Boolean;
     isModified: Boolean;
@@ -65,6 +69,21 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TMainForm.DiamondSquare1Click(Sender: TObject);
+var
+  tmpString: string;
+  Coef: Extended;
+  Error: Integer;
+begin
+  if InputQuery('Настройка алгоритма', 'Введите коэффциент холмистости', tmpString) then
+  begin
+    Coef := StrToFloatDef(tmpString, 0);
+    DiamondSquareGenerator(map, coef);
+  end;
+  Invalidate;
+  isModified := true;
+end;
 
 procedure TMainForm.ExitProcedure;
 begin
@@ -87,6 +106,21 @@ begin
   map := TBitMap.Create;
   isModified := false;
   isPainiting := false;
+end;
+
+procedure TMainForm.MidPointDisplacement1Click(Sender: TObject);
+var
+  tmpString: string;
+  Coef: Extended;
+  Error: Integer;
+begin
+  if InputQuery('Настройка алгоритма', 'Введите коэффциент холмистости', tmpString) then
+  begin
+    Coef := StrToFloatDef(tmpString, 0);
+    MidPointDisplacment(map, coef);
+  end;
+  Invalidate;
+  isModified := true;
 end;
 
 procedure TMainForm.mmExitClick(Sender: TObject);
@@ -162,9 +196,26 @@ begin
 end;
 
 procedure TMainForm.mmSimpleGeneratorClick(Sender: TObject);
+var
+  tmpString: string;
+  Coef: Integer;
+  Error: Integer;
 begin
-  SimpleGenerator(map);
-  isModified := true;
+  if InputQuery('Настройка алгоритма',
+    'Введите коэффциент холмистости(целое число)', tmpString) then
+  begin
+    val(tmpString, coef, Error);
+    if(Error = 0) then
+    begin
+      SimpleGenerator(map, coef);
+      isModified := true;
+    end
+    else
+    begin
+      ShowMessage('Нужно ввести целое число!');
+    end;
+  end;
+  Invalidate;
 end;
 
 procedure TMainForm.Modify(X, Y:Integer);
@@ -185,9 +236,13 @@ begin
   Hight := GetRValue(map.Canvas.Pixels[X, Y]) + Power;
   for Radius := 0 to MaxR do
   begin
-    if (Hight < 0) or (Hight > 255)then
+    if (Hight < 0) then
     begin
-      break
+      Hight := 0;
+    end;
+    if (Hight > 255) then
+    begin
+      Hight := 255;
     end;
     map.Canvas.Pen.Color := rgb(Hight, Hight, Hight);
     map.Canvas.Ellipse(x - Radius, y - Radius, x + Radius, y + Radius);

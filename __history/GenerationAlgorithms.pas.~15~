@@ -257,7 +257,7 @@ begin
     col := 255
   else if col < 0 then
        col := 0;
-  if map.Canvas.Pixels[X1, (Y1 + Y2) div 2 + TopMove] = clBlack then
+  //if map.Canvas.Pixels[X1, (Y1 + Y2) div 2 + TopMove] = clBlack then
     map.Canvas.Pixels[X1, (Y1 + Y2) div 2 + TopMove] := rgb(col, col, col);
 
   col := (TopRight + BottomRight) div 2 + Random(Round((Y1 + Y2) div 2 + TopMove - Y1)) - Round(((Y1 + Y2) div 2 + TopMove - Y1)*R);
@@ -265,7 +265,7 @@ begin
     col := 255
   else if col < 0 then
        col := 0;
-  if map.Canvas.Pixels[X1, (Y1 + Y2) div 2 + TopMove] = clBlack then
+  //if map.Canvas.Pixels[X1, (Y1 + Y2) div 2 + TopMove] = clBlack then
     map.Canvas.Pixels[X1, (Y1 + Y2) div 2 + TopMove] := rgb(col, col, col);
 
   col := (TopLeft + TopRight) div 2 + Random(Round((((X1 + X2) div 2 + LeftMove - X1)*R*2))) - Round(((X1 + X2) div 2 + LeftMove - X1)*R);
@@ -273,7 +273,7 @@ begin
     col := 255
   else if col < 0 then
        col := 0;
-  if map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, Y1] = clBlack then
+  //if map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, Y1] = clBlack then
     map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, Y1] := rgb(col, col, col);
 
   col := (BottomLeft + BottomRight) div 2 + Random(Round(((X1 + X2) div 2 + LeftMove - X1)*R*2)) - Round(((X1 + X2) div 2 + LeftMove - X1)*R);
@@ -281,7 +281,7 @@ begin
     col := 255
   else if col < 0 then
        col := 0;
-  if map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, Y2] = clBlack then
+  //if map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, Y2] = clBlack then
     map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, Y2] := rgb(col, col, col);
 
   col := (BottomLeft + BottomRight + TopLeft + TopRight) div 4 +
@@ -290,7 +290,7 @@ begin
     col := 255
   else if col < 0 then
        col := 0;
-  if map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, (Y1 + Y2) div 2 + TopMove] = clBlack then
+  //if map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, (Y1 + Y2) div 2 + TopMove] = clBlack then
     map.Canvas.Pixels[(X1 + X2) div 2 + LeftMove, (Y1 + Y2) div 2 + TopMove] := rgb(col, col, col);
 
   MidPointRec(map, X1, Y1, (X1 + X2) div 2 + LeftMove, (Y1 + Y2) div 2 + TopMove, R);
